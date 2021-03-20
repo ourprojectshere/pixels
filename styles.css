@@ -1,0 +1,24 @@
+table#thePicture {
+    border-collapse: collapse;
+}
+
+td.c1968 {
+    background-color:rgb(32, 131, 49);
+    border-style: none;
+}
+
+td.c3021 {
+    background-color:rgb(141, 139, 33);
+    border-style: none;
+}
+
+td.c3031 {
+    background-color:rgb(141, 112, 33);
+    border-style: none;
+}
+
+td {
+    width: 5px;
+    height: 8px;
+    border: 1px solid black;
+}
