@@ -1,1 +1,88 @@
-Hello, Git Hub Pages! Ima index.
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Load json -->
+    <!-- <script src="1_90_10_81.json"></script> -->
+    <script>
+        var pixelsJson = '[ { "point": { "x": 1, "y": 90 }, "color": "1968", "isMarked": false }, { "point": { "x": 2, "y": 90 }, "color": "1968", "isMarked": false }, { "point": { "x": 3, "y": 90 }, "color": "1968", "isMarked": false }, { "point": { "x": 4, "y": 90 }, "color": "1968", "isMarked": false }, { "point": { "x": 5, "y": 90 }, "color": "1968", "isMarked": false }, { "point": { "x": 6, "y": 90 }, "color": "3021", "isMarked": false }, { "point": { "x": 7, "y": 90 }, "color": "3021", "isMarked": false }, { "point": { "x": 8, "y": 90 }, "color": "3021", "isMarked": false }, { "point": { "x": 9, "y": 90 }, "color": "3021", "isMarked": false }, { "point": { "x": 10, "y": 90 }, "color": "1968", "isMarked": false }, { "point": { "x": 1, "y": 89 }, "color": "1968", "isMarked": false }, { "point": { "x": 2, "y": 89 }, "color": "1968", "isMarked": false }, { "point": { "x": 3, "y": 89 }, "color": "1968", "isMarked": false }, { "point": { "x": 4, "y": 89 }, "color": "1968", "isMarked": false }, { "point": { "x": 5, "y": 89 }, "color": "1968", "isMarked": false }, { "point": { "x": 6, "y": 89 }, "color": "1968", "isMarked": false }, { "point": { "x": 7, "y": 89 }, "color": "3031", "isMarked": false }, { "point": { "x": 8, "y": 89 }, "color": "3021", "isMarked": false }, { "point": { "x": 9, "y": 89 }, "color": "3021", "isMarked": false }, { "point": { "x": 10, "y": 89 }, "color": "3021", "isMarked": false }, { "point": { "x": 1, "y": 88 }, "color": "1968", "isMarked": false }, { "point": { "x": 2, "y": 88 }, "color": "1968", "isMarked": false }, { "point": { "x": 3, "y": 88 }, "color": "1968", "isMarked": false }, { "point": { "x": 4, "y": 88 }, "color": "1968", "isMarked": false }, { "point": { "x": 5, "y": 88 }, "color": "1968", "isMarked": false }, { "point": { "x": 6, "y": 88 }, "color": "1968", "isMarked": false }, { "point": { "x": 7, "y": 88 }, "color": "3031", "isMarked": false }, { "point": { "x": 8, "y": 88 }, "color": "3021", "isMarked": false }, { "point": { "x": 9, "y": 88 }, "color": "3021", "isMarked": false }, { "point": { "x": 10, "y": 88 }, "color": "3021", "isMarked": false } ]';
+    </script>
+
+
+</head>
+
+<body>
+    <h1>Pixels</h1>
+    <!-- Create table -->
+    <script>
+        'use strict';
+        // Read JSON
+        var pixels = readJSON(pixelsJson);
+
+        // Determine picture size
+        // let { rows, cols } = findPictureSize(pixels);
+        let { rows, cols } = findPictureSize(pixels);
+
+
+        // Draw empty table
+        createEmptyTable(rows, cols);
+
+        // Populate the table with colors
+        pixels.forEach(square => {
+            var td = document.getElementById('row' + square.point.x + 'col' + square.point.y);
+            td.classList.add('c' + square.color);
+        })
+
+        function findPictureSize(pixels) {
+            let rows = 0;
+            let cols = 0;
+            pixels.forEach(element => {
+                if (element.point.x > rows) {
+                    rows = element.point.x;
+                }
+                if (element.point.y > cols) {
+                    cols = element.point.y;
+                }
+            })
+            console.log('The picture is ' + rows + 'x' + cols);
+
+            return { rows: rows, cols: cols };
+        }
+
+        function readJSON(jsonString) {
+            var pixels = JSON.parse(pixelsJson);
+
+            // Loop through the JSON just for debugging
+            pixels.forEach(element => {
+                console.log('(' + element.point.x + ',' + element.point.y + ') ' + 'color = ' + element.color);
+            });
+
+            return pixels;
+        }
+
+        function createEmptyTable(rows, cols) {
+            // Create empty table in body
+            var body = document.getElementsByTagName('body')[0];
+            var tbl = document.createElement('table');
+            tbl.id = 'theImage';
+            var tbdy = document.createElement('tbody');
+
+            // Populate the table
+            for (var i = 0; i <= rows; i++) {
+                var tr = document.createElement('tr');
+                tr.id = 'row' + i;
+                for (var j = 0; j <= cols; j++) {
+                    var td = document.createElement('td');
+                    td.id = tr.id + 'col' + j;
+                    tr.appendChild(td)
+                }
+                tbdy.appendChild(tr);
+            }
+            tbl.appendChild(tbdy);
+            body.appendChild(tbl);
+        }
+    </script>
+</body>
+
+</html>
